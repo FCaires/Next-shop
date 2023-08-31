@@ -4,7 +4,7 @@ import validator from 'validator'
 
 interface FormData {
     name: string,
-    email: string,
+    email: string,  
     pergunta: string,
 }
 

@@ -1,14 +1,11 @@
-
-
 import Image from 'next/image';
 import Link from 'next/link';
 import Produto from '@/model/Produto';
 
-
 interface ProdutosProps {
     produtos: Produto;
-
 }
+
 const ProdutosItem: React.FC<ProdutosProps> = ({ produtos }) => {
 
     return (
