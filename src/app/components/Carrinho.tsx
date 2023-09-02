@@ -1,38 +1,33 @@
 import ItemCarrinho from "@/model/ItemCarrinho"
 import CarrinhoItem from "./CarrinhoItem"
+
+import CarrinhoVazio from "./CarrinhoVazio"
 import Moeda from "../utils/Moeda"
 
-
 interface CarrinhoProps {
-    itens: ItemCarrinho[],
+    itens: ItemCarrinho[]
 }
 
 export default function Carrinho(props: CarrinhoProps) {
-    const totalPreco = props.itens.reduce((soma, item) => {
+
+    const total = props.itens.reduce((soma, item) => {
         return soma + item.quantidade * item.produto.preco
     }, 0)
 
     return (
-        <div className="flex flex-col border border-white rounded-md overflow-hidden w-4/5">
-            <div className="flex justify-between items-center bg-zinc-800 text-3xl p-3 font-black ">
-                <span>Carrinho</span>
-                <span>{Moeda.formatar(totalPreco)}</span>
-            </div>
+        <div className="flex flex-col m-10 gap-5">
+            <h1 className="text-6xl font-semibold">Carrinho</h1>
+            <h1 className="text-xl font-semibold text-red-600 m-3">Total: {Moeda.formatar(total)}</h1>
             <div className="flex gap-5 p-5">
                 {props.itens.length === 0 ? (
-                    <div className="flex justify-center gap-3 text-zinc-500">
-                        <span>Nenhum item no carrinho</span>
-                    </div>
+                    <CarrinhoVazio />
                 ) : (
                     props.itens.map((item, i) => {
-                        return (
-                            <CarrinhoItem key={i}{...item} />
-                        )
+                        return <CarrinhoItem key={i} {...item} />
                     })
-                )
-                }
+                )}
             </div>
 
-        </div>
+        </div >
     )
 }

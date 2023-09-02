@@ -6,7 +6,7 @@ import PesquisaProvider from './contexts/usePesquisaContexts'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import ImageBg from './components/ImageBg'
-
+import { CarrinhoProvider } from './contexts/useCarrinhoContexts'
 
 const roboto = Roboto_Condensed({ subsets: ['latin'], weight: ['400', '700'] })
 
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    
+    <CarrinhoProvider>
       <PesquisaProvider>
         <html lang="en">
           <body className={roboto.className}>
@@ -32,7 +32,6 @@ export default function RootLayout({
           </body>
         </html>
       </PesquisaProvider>
-    
-
+    </CarrinhoProvider>
   )
 }

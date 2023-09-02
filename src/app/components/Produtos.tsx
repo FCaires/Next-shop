@@ -4,9 +4,10 @@ import Produto from '@/model/Produto';
 
 interface ProdutosProps {
     produtos: Produto;
+    comprar: (produto: Produto) => void
 }
 
-const ProdutosItem: React.FC<ProdutosProps> = ({ produtos }) => {
+const ProdutosItem: React.FC<ProdutosProps> = ({ produtos, comprar }) => {
 
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg mx-4 bg-zinc-600 ">
@@ -22,7 +23,7 @@ const ProdutosItem: React.FC<ProdutosProps> = ({ produtos }) => {
                 <Link href={{ pathname: `/produtos/${produtos.id}` }}  >
                     <button className='p-2 bg-black text-white m-2 rounded-md' >Detalhes</button>
                 </Link>
-                <button className='p-2 bg-black text-white m-2 rounded-md'>Carrinho</button>
+                <button className='p-2 bg-black text-white m-2 rounded-md' onClick={() => comprar(produtos)}>Carrinho</button>
             </div>
         </div >
     );
